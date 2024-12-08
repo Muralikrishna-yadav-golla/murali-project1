@@ -1,0 +1,98 @@
+[33mcommit 65ee16c69742d87778683ea64d2500370e42d0f8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;32mmy-feature-branch[m[33m)[m
+Author: murali <gollamuralikrishnayadav45@gmail.com>
+Date:   Sun Dec 8 16:27:17 2024 +0530
+
+    commit1
+
+ SkoegleTask/__pycache__/__init__.cpython-311.pyc   | Bin [31m171[m -> [32m171[m bytes
+ SkoegleTask/__pycache__/settings.cpython-311.pyc   | Bin [31m3388[m -> [32m3388[m bytes
+ SkoegleTask/__pycache__/urls.cpython-311.pyc       | Bin [31m660[m -> [32m660[m bytes
+ SkoegleTask/__pycache__/views.cpython-311.pyc      | Bin [31m403[m -> [32m403[m bytes
+ SkoegleTask/__pycache__/wsgi.cpython-311.pyc       | Bin [31m701[m -> [32m701[m bytes
+ murali_git_key                                     |   8 [31m----[m
+ murali_git_key.pub                                 |   1 [31m-[m
+ muralikrish_getkey                                 |  50 [31m---------------------[m
+ muralikrish_getkey.pub                             |   1 [31m-[m
+ videos/__pycache__/__init__.cpython-311.pyc        | Bin [31m166[m -> [32m166[m bytes
+ videos/__pycache__/admin.cpython-311.pyc           | Bin [31m221[m -> [32m221[m bytes
+ videos/__pycache__/apps.cpython-311.pyc            | Bin [31m537[m -> [32m537[m bytes
+ videos/__pycache__/forms.cpython-311.pyc           | Bin [31m1087[m -> [32m1087[m bytes
+ videos/__pycache__/models.cpython-311.pyc          | Bin [31m928[m -> [32m928[m bytes
+ videos/__pycache__/urls.cpython-311.pyc            | Bin [31m497[m -> [32m497[m bytes
+ videos/__pycache__/views.cpython-311.pyc           | Bin [31m5749[m -> [32m5749[m bytes
+ .../__pycache__/0001_initial.cpython-311.pyc       | Bin [31m1171[m -> [32m1171[m bytes
+ .../__pycache__/__init__.cpython-311.pyc           | Bin [31m177[m -> [32m177[m bytes
+ 18 files changed, 60 deletions(-)
+
+[33mcommit 994021012b12e3e425e7d7f83b35829cf882b192[m
+Author: murali <gollamuralikrishnayadav45@gmail.com>
+Date:   Sun Dec 8 13:05:26 2024 +0530
+
+    Initial commit
+
+ muralikrish_getkey     | 50 [32m++++++++++++++++++++++++++++++++++++++++++++++++++[m
+ muralikrish_getkey.pub |  1 [32m+[m
+ 2 files changed, 51 insertions(+)
+
+[33mcommit 316cd50b0da3d03c87664c057b42ddb64d87e6e4[m
+Author: murali <murali@123>
+Date:   Sun Dec 8 12:19:27 2024 +0530
+
+    hello git
+
+ murali_git_key     | 8 [32m++++++++[m
+ murali_git_key.pub | 1 [32m+[m
+ 2 files changed, 9 insertions(+)
+
+[33mcommit 38f4f5f058d14f2f8cd5da356f6792cf9a8e9eec[m
+Author: murali <murali@123>
+Date:   Sun Dec 8 12:01:40 2024 +0530
+
+    Initial commit
+
+ SkoegleTask/__init__.py                            |   0
+ SkoegleTask/__pycache__/__init__.cpython-311.pyc   | Bin [31m0[m -> [32m171[m bytes
+ SkoegleTask/__pycache__/settings.cpython-311.pyc   | Bin [31m0[m -> [32m3388[m bytes
+ SkoegleTask/__pycache__/urls.cpython-311.pyc       | Bin [31m0[m -> [32m660[m bytes
+ SkoegleTask/__pycache__/views.cpython-311.pyc      | Bin [31m0[m -> [32m403[m bytes
+ SkoegleTask/__pycache__/wsgi.cpython-311.pyc       | Bin [31m0[m -> [32m701[m bytes
+ SkoegleTask/asgi.py                                |  16 [32m++[m
+ SkoegleTask/settings.py                            | 136 [32m+++++++++++[m
+ SkoegleTask/templates/home.html                    |  74 [32m++++++[m
+ SkoegleTask/templates/videos/list_videos.html      | 255 [32m+++++++++++++++++++++[m
+ SkoegleTask/templates/videos/upload.html           | 156 [32m+++++++++++++[m
+ SkoegleTask/urls.py                                |   9 [32m+[m
+ SkoegleTask/views.py                               |   4 [32m+[m
+ SkoegleTask/wsgi.py                                |  16 [32m++[m
+ db.sqlite3                                         | Bin [31m0[m -> [32m135168[m bytes
+ env.env                                            |   4 [32m+[m
+ manage.py                                          |  22 [32m++[m
+ videos/__init__.py                                 |   0
+ videos/__pycache__/__init__.cpython-311.pyc        | Bin [31m0[m -> [32m166[m bytes
+ videos/__pycache__/admin.cpython-311.pyc           | Bin [31m0[m -> [32m221[m bytes
+ videos/__pycache__/apps.cpython-311.pyc            | Bin [31m0[m -> [32m537[m bytes
+ videos/__pycache__/forms.cpython-311.pyc           | Bin [31m0[m -> [32m1087[m bytes
+ videos/__pycache__/models.cpython-311.pyc          | Bin [31m0[m -> [32m928[m bytes
+ videos/__pycache__/urls.cpython-311.pyc            | Bin [31m0[m -> [32m497[m bytes
+ videos/__pycache__/views.cpython-311.pyc           | Bin [31m0[m -> [32m5749[m bytes
+ videos/admin.py                                    |   3 [32m+[m
+ videos/apps.py                                     |   6 [32m+[m
+ videos/forms.py                                    |  18 [32m++[m
+ videos/migrations/0001_initial.py                  |  24 [32m++[m
+ videos/migrations/__init__.py                      |   0
+ .../__pycache__/0001_initial.cpython-311.pyc       | Bin [31m0[m -> [32m1171[m bytes
+ .../__pycache__/__init__.cpython-311.pyc           | Bin [31m0[m -> [32m177[m bytes
+ videos/models.py                                   |  10 [32m+[m
+ videos/tests.py                                    |   3 [32m+[m
+ videos/urls.py                                     |   9 [32m+[m
+ videos/views.py                                    |  86 [32m+++++++[m
+ 36 files changed, 851 insertions(+)
+
+[33mcommit 399f61fe606b8bf0479241a553605d7f2d966a0d[m[33m ([m[1;31morigin/projects[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Muralikrishna yadav <gollamuralikrishnayadav45@gmail.com>
+Date:   Sat Sep 28 01:31:15 2024 +0530
+
+    Initial commit
+
+ README.md | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
