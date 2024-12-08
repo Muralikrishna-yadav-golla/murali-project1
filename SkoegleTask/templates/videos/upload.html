@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <style>
+        /* Gradient background: Light to Dark */
+        body {
+            background: linear-gradient(to right, #f4f4f9, #2c3e50);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* Content container */
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            margin-top: 20px;
+        }
+
+        /* Header for Home and List Buttons */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333333; 
+            font-size: 20px; 
+            margin: 0;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            background-color: #2980b9;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #3498db;
+        }
+
+        /* Upload Form Styling */
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Reduced gap between elements */
+        }
+
+        .upload-form input[type="file"], .upload-form input[type="date"], .upload-form button {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-form button {
+            background: linear-gradient(to right, #2980b9, #3498db); /* Gradient for button */
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%; /* Full-width button */
+        }
+
+        .upload-form button:hover {
+            background: linear-gradient(to right, #3498db, #2980b9);
+        }
+
+        /* Smaller file input size */
+        .upload-form input[type="file"] {
+            width: auto;
+        }
+
+        /* Smaller date input fields */
+        .upload-form input[type="date"] {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Content Container -->
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="header">
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <a href="/">Home</a>
+                <a href="/list">Video List</a>
+            </div>
+            
+            <!-- Title -->
+            <h1>Upload Video</h1>
+        </div>
+
+        <!-- Upload Form -->
+        <form method="post" class="upload-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Upload Button -->
+            <button type="submit">Upload Video</button>
+        </form>
+    </div>
+
+    <script>
+        // Date Validation: Compare Start Date and End Date
+        document.querySelector('.upload-form').addEventListener('submit', function(event) {
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+
+            if (startDate && endDate) {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+
+                if (end < start) {
+                    event.preventDefault(); // Prevent form submission
+                    alert("End date cannot be before the start date.");
+                }
+            }
+        });
+
+        window.addEventListener('load', function() {
+            document.querySelector('.upload-form').reset();
+        });
+    </script>
+
+</body>
+</html>

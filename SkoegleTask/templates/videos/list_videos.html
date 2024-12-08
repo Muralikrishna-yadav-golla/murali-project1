@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos List</title>
+    <style>
+        /* Gradient background: Light to Dark */
+        body {
+            background: linear-gradient(to right, #f4f4f9, #2c3e50); /* Soft light background to dark */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* Container for content */
+        .container {
+            background-color: #ffffff; /* White background for content */
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        /* Header with title and filter form */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333333; /* Dark color for title */
+            font-size: 24px;
+            margin: 0;
+        }
+
+        /* Home and Upload buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            background-color: #2980b9; /* Solid blue for buttons */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #3498db; /* Lighter blue on hover */
+        }
+
+        /* Filter form styling */
+        .filter-form {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .filter-form input[type="date"], .filter-form button {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            width: 120px;
+            background-color: #fff; /* No gradient for date fields */
+            color: #333; /* Text color */
+        }
+
+        .filter-form button {
+            background-color: #2980b9; /* Solid blue for filter button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .filter-form button:hover {
+            background-color: #3498db; /* Lighter blue on hover */
+        }
+
+        /* Video table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #2c3e50;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        th {
+            background-color: #2980b9; /* Blue background for header */
+            color: white;
+        }
+
+        td {
+            color: #2c3e50;
+        }
+
+        /* Play Button Styling */
+        .play-button {
+            background-color: #27ae60; /* Green for play button */
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            background-color: #2ecc71; /* Lighter green on hover */
+        }
+
+        /* Popup for Video Player */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 640px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup iframe {
+            width: 100%;
+            height: 360px;
+            border-radius: 8px;
+        }
+
+        .popup .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup .close-button:hover {
+            color: #e74c3c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Content Container -->
+    <div class="container">
+        <div class="header">
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <a href="/">Home</a>
+                <a href="/upload">Upload Video</a>
+            </div>
+
+            <!-- Filter Form -->
+            <form method="post" class="filter-form">
+                {% csrf_token %}
+                <input type="date" name="start_date" id="start_date" placeholder="Start Date">
+                <input type="date" name="end_date" id="end_date" placeholder="End Date">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <!-- Video List Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Video Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through actual videos -->
+                {% for video in videos %}
+                    <tr>
+                        <td>{{ video.start_time }}</td>
+                        <td>{{ video.end_time }}</td>
+                        <td>{{ video.file_name }}</td>
+                        <td><button class="play-button" onclick="openVideoPopup('{{ video.url }}')">Play</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        // Date Validation: Compare Start Date and End Date
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+
+            if (startDate && endDate) {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+
+                if (end < start) {
+                    event.preventDefault(); // Prevent form submission
+                    alert("End date cannot be before the start date.");
+                }
+            }
+        });
+
+        function openVideoPopup(videoUrl) {
+            if (!videoUrl) {
+                alert("Video URL is unavailable.");
+                return;
+            }
+            window.open(videoUrl, "_blank");
+        }
+
+    </script>
+
+</body>
+</html>
